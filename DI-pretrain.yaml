@@ -1,0 +1,44 @@
+data:
+  name: 'Darcy'
+  path: '/content/physics_informed/data/DIdata1.mat'
+  total_num: 1024
+  offset: 0
+  n_sample: 1000
+  nx: 241
+  sub: 7
+  pde_sub: 2
+
+model:
+  layers: [64, 64, 64, 64, 64]
+  modes1: [18, 18, 18, 18]
+  fc_dim: 128
+  act: gelu
+  pad_ratio: [0., 0.]
+  out_dim: 4
+
+train:
+  batchsize: 20
+  num_iter: 15_001
+  milestones: [5_000, 7_500, 10_000]
+  base_lr: 0.001
+  scheduler_gamma: 0.5
+  f_loss: 1.0
+  xy_loss: 5.0
+  save_step: 2_500
+  eval_step: 2_500
+
+test:
+  path: '/content/physics_informed/data/DIdata2.mat'
+  total_num: 1024
+  offset: 0
+  n_sample: 500
+  nx: 241
+  sub: 2
+  batchsize: 1
+
+
+log:
+  logdir: DI_solver
+  entity: hzzheng-pino
+  project: DI
+  group: DI_new
